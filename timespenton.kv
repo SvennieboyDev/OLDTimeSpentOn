@@ -1,0 +1,51 @@
+#:kivy 2.3.0
+
+#Gestart op 17 oktober 2024
+
+WindowManager:
+    StartWindow:
+    MainWindow:
+
+<StartWindow>:
+
+    name: "start"
+
+    FloatLayout:
+        
+        Label:
+            text: "Time Spent On"
+            pos_hint: {"x":0.5, "y":0.9}
+            font_size: 40
+            size_hint: 0,0
+
+        Button:
+            text: "Initiate"
+            pos_hint: {"x":0.35, "y":0.1}
+            font_size: 30
+            size_hint: 0.3,0.2
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+
+<MainWindow>:
+    name: "main"
+
+    time: time
+
+    GridLayout:
+        
+        cols:1
+
+        GridLayout:
+            cols:3
+            
+            TextInput:
+                id: time
+                multiline:False
+
+            Button:
+                text: "Add time"
+                on_press: root.addTime()
+
+            Label: 
+                text: "Time: "
