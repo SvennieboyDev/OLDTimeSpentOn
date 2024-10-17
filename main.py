@@ -12,5 +12,5 @@ class MyApp(App):
         layout.add_widget(Label(text="15 October 2024"))
         return layout
     
-if __name__ == "__name__":
+if __name__ == "__main__":
     MyApp().run()
