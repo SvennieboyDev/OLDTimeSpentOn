@@ -9,7 +9,9 @@ from kivy.properties import ObjectProperty, StringProperty, NumericProperty
 from kivy.uix.widget import Widget
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
+from kivy.uix.label import Label
 
 class StartWindow(Screen):
     pass
@@ -19,6 +21,7 @@ class MainWindow(Screen):
 
     time = ObjectProperty(None)
     showtime = ObjectProperty(None)
+    widget_container = ObjectProperty(None)
 
     def addTime(self):
         try:
@@ -27,8 +30,9 @@ class MainWindow(Screen):
         except ValueError:
             pass
     
-    def create(self, instance):
-        pass
+    def create(self):
+        new_subject = Label(text="test")
+        self.widget_container.add_widget(new_subject)
 
 
 class WindowManager(ScreenManager):
