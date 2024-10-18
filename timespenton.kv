@@ -31,10 +31,17 @@ WindowManager:
     name: "main"
 
     time: time
+    showtime: showtime
 
     GridLayout:
         
         cols:1
+
+        Button:
+            text: "Go back"
+            on_release:
+                app.root.current = "start"
+                root.manager.transition.direction = "right"
 
         GridLayout:
             cols:3
@@ -48,4 +55,9 @@ WindowManager:
                 on_press: root.addTime()
 
             Label: 
+                id: showtime
                 text: "Time: "
+        
+        Button:
+            text: "Create"
+            on_press: root.create()
