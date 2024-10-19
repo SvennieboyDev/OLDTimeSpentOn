@@ -35,9 +35,16 @@ class MainWindow(Screen):
         self.widget_container.add_widget(new_subject_addTime)
         self.widget_container.add_widget(new_subject_showtime)
 
-        new_subject_addTime.bind(on_press=self.addTime)
+        new_subject_addTime.bind(on_press=self.addTime_dynamic)
 
-    def addTime(self):
+    def addTime_static(self):
+        try:
+            self.timeCount += int(self.time.text)
+            self.showtime.text = "Time: " + str(self.timeCount)
+        except ValueError:
+            pass
+    
+    def addTime_dynamic(self, instance):
         try:
             self.timeCount += int(self.time.text)
             self.showtime.text = "Time: " + str(self.timeCount)
