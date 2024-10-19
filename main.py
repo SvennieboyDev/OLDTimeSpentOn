@@ -17,18 +17,16 @@ class StartWindow(Screen):
     pass
 
 class MainWindow(Screen):
-    timeCount = NumericProperty(0)
-
     time = ObjectProperty(None)
     showtime = ObjectProperty(None)
     widget_container = ObjectProperty(None)
+
+    timeCount = NumericProperty(0)
     
     def create(self):
         #new_subject = Label(text="New Subject")
         new_subject_timeInput = TextInput(multiline=False)
-
         new_subject_addTime = Button(text="Add time")
-
         new_subject_showtime = Label(text="Time: ")
 
         self.widget_container.add_widget(new_subject_timeInput)
@@ -46,8 +44,7 @@ class MainWindow(Screen):
     
     def addTime_dynamic(self, instance):
         try:
-            self.timeCount += int(self.time.text)
-            self.showtime.text = "Time: " + str(self.timeCount)
+            print("it worked")
         except ValueError:
             pass
 
