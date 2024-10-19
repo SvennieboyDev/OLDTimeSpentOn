@@ -43,10 +43,11 @@ WindowManager:
             on_release:
                 app.root.current = "start"
                 root.manager.transition.direction = "right"
-
+        
         GridLayout:
+            id: widget_container
             cols:3
-            
+
             TextInput:
                 id: time
                 multiline:False
@@ -58,10 +59,6 @@ WindowManager:
             Label: 
                 id: showtime
                 text: "Time: "
-        
-        GridLayout:
-            id: widget_container
-            cols:3
 
         
         Button:

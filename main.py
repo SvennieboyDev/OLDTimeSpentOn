@@ -22,6 +22,20 @@ class MainWindow(Screen):
     time = ObjectProperty(None)
     showtime = ObjectProperty(None)
     widget_container = ObjectProperty(None)
+    
+    def create(self):
+        #new_subject = Label(text="New Subject")
+        new_subject_timeInput = TextInput(multiline=False)
+
+        new_subject_addTime = Button(text="Add time")
+
+        new_subject_showtime = Label(text="Time: ")
+
+        self.widget_container.add_widget(new_subject_timeInput)
+        self.widget_container.add_widget(new_subject_addTime)
+        self.widget_container.add_widget(new_subject_showtime)
+
+        new_subject_addTime.bind(on_press=self.addTime)
 
     def addTime(self):
         try:
@@ -29,15 +43,6 @@ class MainWindow(Screen):
             self.showtime.text = "Time: " + str(self.timeCount)
         except ValueError:
             pass
-    
-    def create(self):
-        new_subject = Label(text="New Subject")
-        new_subject_timeInput = TextInput(text="test", multiline=False)
-        new_subject_addTime = Button(text="Add time")
-        new_subject_showtime = Label(text="Time: ")
-
-        self.widget_container.add_widget(new_subject)
-        self.widget_container.add_widget(new_subject_timeInput)
 
 
 class WindowManager(ScreenManager):
