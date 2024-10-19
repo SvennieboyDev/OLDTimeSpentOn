@@ -1,5 +1,7 @@
 #Gestart op 15 oktober 2024
 
+import time
+
 import kivy
 from kivy.app import App
 from kivy.core.window import Window
@@ -22,8 +24,13 @@ class MainWindow(Screen):
     widget_container = ObjectProperty(None)
 
     timeCount = NumericProperty(0)
+    button_number = 0
+    new_timeCounts = {}
     
     def create(self):
+        self.button_number += 1
+        self.new_timeCounts[self.button_number] = 0
+
         #new_subject = Label(text="New Subject")
         new_subject_timeInput = TextInput(multiline=False)
         new_subject_addTime = Button(text="Add time")
@@ -33,7 +40,7 @@ class MainWindow(Screen):
         self.widget_container.add_widget(new_subject_addTime)
         self.widget_container.add_widget(new_subject_showtime)
 
-        new_subject_addTime.bind(on_press=self.addTime_dynamic)
+        new_subject_addTime.bind(on_press=lambda instance: self.addTime_dynamic(instance, new_subject_timeInput, new_subject_showtime, self.button_number, self.new_timeCounts))
 
     def addTime_static(self):
         try:
@@ -42,9 +49,14 @@ class MainWindow(Screen):
         except ValueError:
             pass
     
-    def addTime_dynamic(self, instance):
+    def addTimeBtnPress():
+        pass
+    
+    def addTime_dynamic(self, instance, textInput, showtime_label, button_number, timeCounts):
         try:
-            print("it worked")
+            new_timeCount = timeCounts[button_number]
+            new_timeCount += int(textInput.text)
+            showtime_label.text = "Time: " + str(new_timeCount)
         except ValueError:
             pass
 
