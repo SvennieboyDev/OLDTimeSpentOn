@@ -32,6 +32,7 @@ WindowManager:
 
     time: time
     showtime: showtime
+    widget_container: widget_container
 
     GridLayout:
         
@@ -58,9 +59,10 @@ WindowManager:
                 id: showtime
                 text: "Time: "
         
-        BoxLayout:
+        GridLayout:
             id: widget_container
-            orientation: 'horizontal'
+            cols:3
+
         
         Button:
             text: "Create"
