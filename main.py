@@ -56,6 +56,7 @@ class MainWindow(Screen):
         try:
             new_timeCount = timeCounts[button_number]
             new_timeCount += int(textInput.text)
+            timeCounts[button_number] = new_timeCount
             showtime_label.text = "Time: " + str(new_timeCount)
         except ValueError:
             pass
