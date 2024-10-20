@@ -1,4 +1,4 @@
-#Gestart op 15 oktober 2024
+#Gestart op 15 oktober
 
 import time
 
@@ -15,49 +15,50 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 
+class CreateSubject:
+    button_number = 0
+
+    def __init__(self, widget_container):
+        self.button_number += 1
+        self.timeCount = 0
+        
+        showsubject = Label(text= "Subject: ")
+        timeInput = TextInput(multiline=False)
+        addTime = Button(text="Add time")
+        showtime = Label(text="Time: ")
+
+        widget_container.add_widget(showsubject)
+        widget_container.add_widget(timeInput)
+        widget_container.add_widget(addTime)
+        widget_container.add_widget(showtime)
+
+        addTime.bind(on_press=lambda instance: self.addTime_dynamic(instance, timeInput, showtime))
+    
+    def addTime_dynamic(self, instance, timeInput, showtime_label):
+        try:
+            self.timeCount += int(timeInput.text)
+            showtime_label.text = "Time: " + str(self.timeCount)
+        except ValueError:
+            pass
+
+
 class StartWindow(Screen):
     pass
 
 class MainWindow(Screen):
-    time = ObjectProperty(None)
-    showtime = ObjectProperty(None)
+    static_time = ObjectProperty(None)
+    static_showtime = ObjectProperty(None)
     widget_container = ObjectProperty(None)
 
     timeCount = NumericProperty(0)
-    button_number = 0
-    new_timeCounts = {}
     
     def create(self):
-        self.button_number += 1
-        self.new_timeCounts[self.button_number] = 0
-
-        #new_subject = Label(text="New Subject")
-        new_subject_timeInput = TextInput(multiline=False)
-        new_subject_addTime = Button(text="Add time")
-        new_subject_showtime = Label(text="Time: ")
-
-        self.widget_container.add_widget(new_subject_timeInput)
-        self.widget_container.add_widget(new_subject_addTime)
-        self.widget_container.add_widget(new_subject_showtime)
-
-        new_subject_addTime.bind(on_press=lambda instance: self.addTime_dynamic(instance, new_subject_timeInput, new_subject_showtime, self.button_number, self.new_timeCounts))
+        CreateSubject(self.widget_container)
 
     def addTime_static(self):
         try:
             self.timeCount += int(self.time.text)
             self.showtime.text = "Time: " + str(self.timeCount)
-        except ValueError:
-            pass
-    
-    def addTimeBtnPress():
-        pass
-    
-    def addTime_dynamic(self, instance, textInput, showtime_label, button_number, timeCounts):
-        try:
-            new_timeCount = timeCounts[button_number]
-            new_timeCount += int(textInput.text)
-            timeCounts[button_number] = new_timeCount
-            showtime_label.text = "Time: " + str(new_timeCount)
         except ValueError:
             pass
 

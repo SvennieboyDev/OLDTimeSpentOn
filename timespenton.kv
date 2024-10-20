@@ -30,6 +30,7 @@ WindowManager:
 <MainWindow>:
     name: "main"
 
+    showsubject: showsubject
     time: time
     showtime: showtime
     widget_container: widget_container
@@ -46,7 +47,11 @@ WindowManager:
         
         GridLayout:
             id: widget_container
-            cols:3
+            cols:4
+
+            Label:
+                id: showsubject
+                text: "Subject: "
 
             TextInput:
                 id: time
