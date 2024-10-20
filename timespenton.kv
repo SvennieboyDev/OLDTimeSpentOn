@@ -30,10 +30,12 @@ WindowManager:
 <MainWindow>:
     name: "main"
 
-    showsubject: showsubject
     time: time
     showtime: showtime
     widget_container: widget_container
+    changeSubjectLayout: changeSubjectLayout
+    changeSubjectInput: changeSubjectInput
+    changeSubjectBtn: changeSubjectBtn
 
     GridLayout:
         
@@ -49,10 +51,19 @@ WindowManager:
             id: widget_container
             cols:4
 
-            TextInput:
-                id: showsubject
-                text: "Subject: "
-                multiline: False
+            BoxLayout:
+                id: changeSubjectLayout
+                orientation: 'vertical'
+
+                TextInput:
+                    id: changeSubjectInput
+                    text: "New subject"
+                    multiline: False
+                
+                Button:
+                    id: changeSubjectBtn
+                    text: "Confirm"
+                    on_press: root.change_subject_name() 
 
             TextInput:
                 id: time
@@ -66,7 +77,6 @@ WindowManager:
                 id: showtime
                 text: "Time: "
 
-        
         Button:
             text: "Create"
             on_press: root.create()
