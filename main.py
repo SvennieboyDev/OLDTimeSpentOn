@@ -22,7 +22,7 @@ class CreateSubject:
         self.button_number += 1
         self.timeCount = 0
         
-        showsubject = Label(text= "Subject: ")
+        showsubject = TextInput(text="Subject: ", multiline=False)
         timeInput = TextInput(multiline=False)
         addTime = Button(text="Add time")
         showtime = Label(text="Time: ")
@@ -32,7 +32,12 @@ class CreateSubject:
         widget_container.add_widget(addTime)
         widget_container.add_widget(showtime)
 
+        # showsubject.bind
+
         addTime.bind(on_press=lambda instance: self.addTime_dynamic(instance, timeInput, showtime))
+
+    def on_enter(self, instance):
+        print("Enter key pressed: ", instance.text)
     
     def addTime_dynamic(self, instance, timeInput, showtime_label):
         try:
